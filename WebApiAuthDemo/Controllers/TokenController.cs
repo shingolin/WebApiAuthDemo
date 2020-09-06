@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 
 namespace WebApiAuthDemo.Controllers
 {
@@ -21,14 +18,15 @@ namespace WebApiAuthDemo.Controllers
         private UserValidateService _userValidateService;
         private UserInfoService _userInfoService;
 
-        public TokenController(IConfiguration configuration, UserValidateService userValidateService,UserInfoService userInfoService)
+        public TokenController(IConfiguration configuration, UserValidateService userValidateService, UserInfoService userInfoService)
         {
             _configuration = configuration;
             _userValidateService = userValidateService;
             _userInfoService = userInfoService;
         }
+        //[ApiExplorerSettings(IgnoreApi = true)]
         [Route("Signin")]
-        [HttpPost("~/signin")]
+        [HttpPost]
         public ActionResult<string> SignIn(LoginViewModel login)
         {
             // 以下變數值應該透過 IConfiguration 取得
@@ -37,7 +35,7 @@ namespace WebApiAuthDemo.Controllers
             var expires = Convert.ToInt32(_configuration["JWT:expires"]); // 單位: 分鐘
 
             if (_userValidateService.ValidateUser(login))
-            {               
+            {
                 return JwtHelpers.GenerateToken(issuer, signKey, login.Username, expires, _userInfoService.GetApiRoles(login.Username), JsonConvert.SerializeObject(_userInfoService.GetUserInfo(login.Username)));
             }
             else

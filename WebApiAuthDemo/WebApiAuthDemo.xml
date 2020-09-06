@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebApiAuthDemo</name>
+    </assembly>
+    <members>
+        <member name="T:WebApiAuthDemo.Controllers.JwtHelpers">
+             https://blog.miniasp.com/post/2019/10/13/How-to-use-JWT-token-based-auth-in-aspnet-core-22
+            
+        </member>
+        <member name="T:WebApiAuthDemo.Controllers.TokenController">
+             https://blog.miniasp.com/post/2019/10/13/How-to-use-JWT-token-based-auth-in-aspnet-core-22
+            
+        </member>
+        <member name="M:WebApiAuthDemo.Controllers.UserInfoService.#ctor">
+            <summary>
+            取得使用者資訊的服務
+            </summary>
+        </member>
+        <member name="M:WebApiAuthDemo.Controllers.UserInfoService.GetApiRoles(System.String)">
+            <summary>
+            取得api的權限
+            </summary>
+            <param name="UserId">使用者編號</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiAuthDemo.Controllers.UserInfoService.GetUserInfo(System.String)">
+            <summary>
+            取得使用者資訊
+            </summary>
+            <param name="UserId">使用者編號</param>
+            <returns></returns>
+        </member>
+        <member name="T:WebApiAuthDemo.Controllers.UserValidateService">
+            <summary>
+            使用者驗證服務
+            </summary>
+        </member>
+        <member name="M:WebApiAuthDemo.Controllers.UserValidateService.ValidateUser(WebApiAuthDemo.Controllers.LoginViewModel)">
+            <summary>
+            驗證使用者
+            </summary>
+            <param name="login"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

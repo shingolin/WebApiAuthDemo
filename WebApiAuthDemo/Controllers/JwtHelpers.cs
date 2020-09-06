@@ -1,5 +1,4 @@
 ﻿using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -13,7 +12,7 @@ namespace WebApiAuthDemo.Controllers
      **/
     public class JwtHelpers
     {
-        public static string GenerateToken(string issuer, string signKey, string userName, int expireMinutes,string[] roles, string userInfo = "")
+        public static string GenerateToken(string issuer, string signKey, string userName, int expireMinutes, string[] roles, string userInfo = "")
         {
             // 設定要加入到 JWT Token 中的聲明資訊(Claims)
             var claims = new List<Claim>();
@@ -34,11 +33,11 @@ namespace WebApiAuthDemo.Controllers
             // https://stackoverflow.com/a/45333209/910074
             claims.Add(new Claim(ClaimTypes.Name, userName));
             claims.Add(new Claim(ClaimTypes.UserData, userInfo));
-            foreach(var role in roles)
+            foreach (var role in roles)
             {
                 claims.Add(new Claim(ClaimTypes.Role, role));//存取api的權限
             }
-                //claims.Add(new Claim(ClaimTypes.Role, JsonConvert.SerializeObject(new string[] { Role.User })));
+            //claims.Add(new Claim(ClaimTypes.Role, JsonConvert.SerializeObject(new string[] { Role.User })));
             // 你可以自行擴充 "roles" 加入登入者該有的角色
             //claims.Add(new Claim("roles", "Admin"));
             //claims.Add(new Claim("roles", "Users"));
